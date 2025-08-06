@@ -1,22 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello User</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Are You Chelse?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #ffe0e6 0%, #fffde4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            color: #d7266c;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(215,38,108,0.15);
+            padding: 2em 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 370px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .emoji {
+            font-size: 2.5em;
+        }
+        .button-row {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        button {
+            background-color: #d7266c;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8em 2em;
+            font-size: 1em;
+            margin-top: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 6px rgba(215,38,108,0.06);
+        }
+        button:hover, button:focus {
+            background-color: #b41b53;
+        }
+        .message {
+            margin-top: 1em;
+            font-size: 1.1em;
+            color: #b41b53;
+            text-align: center;
+        }
+        .calendar-section {
+            margin-top: 1em;
+            text-align: center;
+            width: 100%;
+        }
+        label {
+            font-size: 1em;
+        }
+        input[type="date"] {
+            border: 1px solid #d7266c;
+            border-radius: 6px;
+            padding: 0.5em;
+            font-size: 1em;
+            margin-top: 0.7em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2em 0.5em;
+                max-width: 98vw;
+            }
+            h1 {
+                font-size: 1.3em;
+            }
+            .emoji {
+                font-size: 1.8em;
+            }
+            button {
+                font-size: 0.95em;
+                padding: 0.7em 1.2em;
+            }
+            input[type="date"] {
+                font-size: 1em;
+                padding: 0.4em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Enter your name:</h2>
-    
-    <input type="text" id="nameInput" placeholder="Your name here">
-    <button onclick="greetUser()">Submit</button>
-
-    <h3 id="greetingMessage"></h3>
-    <h4 id="followMessage"></h4>
-  </div>
-
-  <script src="script.js"></script>
+    <div class="card" id="main-card">
+        <div class="emoji">💖</div>
+        <h1>Are you Chelse?</h1>
+        <div id="button-section" class="button-row">
+            <button onclick="answerNo()">No</button>
+            <button onclick="answerYes()">Yes</button>
+        </div>
+        <div class="message" id="message"></div>
+        <div class="calendar-section" id="calendar-section" style="display:none;">
+            <label for="anniv-date">Pick our anniversary date:</label><br>
+            <input type="date" id="anniv-date" />
+            <button onclick="checkDate()">Submit</button>
+            <div class="message" id="date-message"></div>
+        </div>
+    </div>
+    <script>
+        function answerNo() {
+            document.getElementById('message').textContent = "This site is specifically for Chelse. 💗";
+            document.getElementById('calendar-section').style.display = "none";
+        }
+        function answerYes() {
+            document.getElementById('message').textContent = "";
+            document.getElementById('calendar-section').style.display = "block";
+        }
+        function checkDate() {
+            const dateInput = document.getElementById('anniv-date').value;
+            const correctDate = "2023-03-25";
+            if (dateInput === correctDate) {
+                window.location.href = "1first.html";
+            } else {
+                document.getElementById('date-message').textContent = "That’s not our anniversary, try again!";
+            }
+        }
+    </script>
 </body>
 </html>

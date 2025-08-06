@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I Love You Bek!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 70% 30%, #ffe0e6 0%, #fffde4 100%);
+      overflow: hidden;
+      position: relative;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+    }
+    .heart-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .heart {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: #ff4e8a;
+      clip-path: polygon(
+        50% 70%, 0 30%, 20% 8%, 50% 30%, 80% 8%, 100% 30%
+      );
+      opacity: 0.5;
+      animation: float 10s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8) rotate(0deg); }
+      100% { transform: translateY(-120vh) scale(1.25) rotate(360deg);}
+    }
+    .main-message {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #d7266c;
+      font-size: 4em;
+      font-weight: bold;
+      letter-spacing: 0.07em;
+      text-shadow: 0 4px 32px #ffb6c1, 0 2px 8px #d7266c99;
+      background: linear-gradient(90deg, #ff4e8a, #ffe0e6 70%, #d7266c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      margin-bottom: 0.1em;
+      animation: popIn 2s cubic-bezier(.26,1.5,.65,1) 1;
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.6);}
+      80% { opacity: 1; transform: scale(1.08);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .sub-text {
+      font-size: 1.5em;
+      color: #b41b53;
+      font-weight: 500;
+      margin-top: 0.5em;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 12px #ffe0e6;
+      animation: fadeIn 3s 2.5s both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    @media (max-width: 600px) {
+      .main-message {
+        font-size: 2.2em;
+      }
+      .sub-text {
+        font-size: 1.1em;
+      }
+      .heart { width: 26px; height: 26px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-bg" id="hearts"></div>
+  <div>
+    <div class="main-message">I love you Bek!</div>
+    <div class="sub-text">Forever and always 💖</div>
+  </div>
+  <script>
+    // Generate floating hearts
+    const heartColors = ["#ff4e8a", "#ffb6c1", "#d7266c", "#fffde4"];
+    function createHearts() {
+      const heartsDiv = document.getElementById('hearts');
+      for(let i=0; i<22; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = Math.random() * 100 + 'vh';
+        heart.style.background = heartColors[Math.floor(Math.random()*heartColors.length)];
+        heart.style.opacity = 0.4 + Math.random()*0.5;
+        heart.style.animationDuration = (7 + Math.random()*8) + 's';
+        heartsDiv.appendChild(heart);
+      }
+    }
+    createHearts();
+  </script>
+</body>
+</html>

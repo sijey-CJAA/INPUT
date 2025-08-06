@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hi Chelse!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(135deg, #ffe0e6 0%, #fffde4 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #d7266c;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(215,38,108,0.15);
+      padding: 2em 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      min-height: 180px;
+      justify-content: center;
+    }
+    .message {
+      font-size: 1.35em;
+      text-align: center;
+      margin: 0.5em 0;
+      min-height: 3em;
+      transition: opacity 0.6s;
+      opacity: 1;
+    }
+    .emoji {
+      font-size: 2em;
+      margin-bottom: 0.6em;
+    }
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.2em 0.7em;
+        max-width: 96vw;
+      }
+      .message {
+        font-size: 1.05em;
+        min-height: 2.5em;
+      }
+      .emoji {
+        font-size: 1.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">💌</div>
+    <div class="message" id="msg"></div>
+  </div>
+  <script>
+    const messages = [
+      "Hi Bekbek, I hope your having a good day",
+      "It's 1:36AM, and I'm still awake wondering",
+      "Aside sa hindi ako makatulog, iniisip ko",
+      "Paano kung hindi ikaw ang naging jowa ko",
+      "Siguro wala akong shota ngayon",
+      "Kase kung babalik man ang panahon na hindi moko makikilala",
+      "Iintayin kita at liligawan kita at pipilitin kang mahalin ako",
+      "Alam ko galit ka sakin dahil lagi ako nag e-eML",
+      "Sorry kung minsan ginagalit kita",
+      "Lahat ay gagawin ko para hindi ka magalit",
+      "hehehehehehe",
+      "I love you bekbek ko!",
+      "I love you baby"
+    ];
+
+    let idx = 0;
+    const msgDiv = document.getElementById('msg');
+    function showMessage() {
+      msgDiv.style.opacity = 0;
+      setTimeout(() => {
+        msgDiv.textContent = messages[idx];
+        msgDiv.style.opacity = 1;
+        idx++;
+        if (idx < messages.length) {
+          setTimeout(showMessage, 3000);
+        } else {
+          // After last message, redirect after 5 seconds
+          setTimeout(() => {
+            window.location.href = "2second.html";
+          }, 5000);
+        }
+      }, 600);
+    }
+    // Start sequence
+    showMessage();
+  </script>
+</body>
+</html>
